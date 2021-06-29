@@ -1,8 +1,8 @@
 package com.kidunion.controllers;
 
 import com.kidunion.model.Members;
-import com.kidunion.repositories.CrudGeneric;
-import com.kidunion.repositories.FindByValue;
+import com.kidunion.services.CrudGeneric;
+import com.kidunion.services.FindByValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
