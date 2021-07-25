@@ -1,29 +1,33 @@
 package com.kidunion.controllers;
 
 import com.kidunion.model.Members;
-import com.kidunion.services.CrudGeneric;
-import com.kidunion.services.FindByValue;
+import com.kidunion.services.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
 @RequestMapping("/kidunion")
 public class MemberController {
 
-    private CrudGeneric<Members> crudGeneric;
-    private FindByValue<Members> findByValue;
+    private final MemberService memberService;
 
     @Autowired
-    public MemberController(CrudGeneric<Members> crudGeneric , FindByValue<Members> findByValue) {
-        this.findByValue = findByValue;
-        this.crudGeneric = crudGeneric;
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
     }
 
+    /**
+     *
+     * @return list of members
+     */
     @GetMapping("/Member")
     public List<Members> findAll() {
-        return crudGeneric.findAll();
+        return memberService.findAll();
     }
 
     /**
@@ -31,8 +35,9 @@ public class MemberController {
      * @param members
      */
     @PostMapping("/Member")
-    public void save(@RequestBody Members members) {
-        crudGeneric.save(members);
+    public ResponseEntity<String> save(@RequestBody Members members) {
+        memberService.save(members);
+        return ResponseEntity.status(HttpStatus.CREATED).body("Successfully created");
     }
 
     /**
@@ -42,7 +47,10 @@ public class MemberController {
      */
     @GetMapping("/Member/{firstName}")
     public List<Members> findByFirstName(@PathVariable("firstName") String firstName){
-        return findByValue.findByValue(firstName);
+        if (firstName.isEmpty()){
+            return new ArrayList<>();
+        }
+        return memberService.findByValue(firstName);
     }
 
 }

@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-
 public class MemberService implements CrudGeneric<Members>, FindByValue<Members> {
 
-    private MemberRepository membersMemberRepository;
+    private final MemberRepository membersMemberRepository;
+    private static final String STORAGE_TIME = "3 años";
 
     @Autowired
     public MemberService(MemberRepository membersMemberRepository) {
@@ -32,6 +32,7 @@ public class MemberService implements CrudGeneric<Members>, FindByValue<Members>
 
     @Override
     public void save(Members entity) {
+        entity.setStorageTime(STORAGE_TIME);
         membersMemberRepository.save(entity);
     }
 
