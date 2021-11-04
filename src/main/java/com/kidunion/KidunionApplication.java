@@ -1,16 +1,13 @@
 package com.kidunion;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 
-@EnableAutoConfiguration
-public class KidunionApplication extends SpringBootServletInitializer {
-
+@SpringBootApplication
+public class KidunionApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(KidunionApplication.class, args);
 	}
-
 }
 

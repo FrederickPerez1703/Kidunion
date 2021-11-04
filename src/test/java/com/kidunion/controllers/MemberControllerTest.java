@@ -1,9 +1,10 @@
 package com.kidunion.controllers;
 
-import com.kidunion.model.Members;
-import com.kidunion.repositories.MemberRepository;
-import com.kidunion.services.MemberService;
-import com.kidunion.services.Mock.MembersMockFactory;
+import com.kidunion.members.Infrastructure.MemberController;
+import com.kidunion.Mock.MembersMockFactory;
+import com.kidunion.members.domain.Members;
+import com.kidunion.members.domain.MemberRepository;
+import com.kidunion.members.application.MemberService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @SpringBootTest
 public class MemberControllerTest {
+
     @InjectMocks
     MemberController memberController;
     @Mock
@@ -34,30 +36,32 @@ public class MemberControllerTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
         memberService = new MemberService(memberRepository);
-        memberController = new MemberController(memberService);
+        //memberController = new MemberController(memberService);
         MembersMockFactory.newListMembers(memberController);
         MembersMockFactory.newMembers(memberController , "juan");
     }
 
     @Test
-    public void findAll() {
+    public void testFindAll() {
         membersList = new ArrayList<>();
         Assert.assertEquals(membersList, memberController.findAll());
     }
 
     @Test
-    public void save() {
-        Assert.assertEquals(ResponseEntity.status(HttpStatus.CREATED).body("Successfully created"), memberController.save(members));
+    public void testSave() {
+        Assert.assertEquals(ResponseEntity.status(HttpStatus.CREATED).body("Successfully created")
+                ,memberController.save(members));
     }
 
+
     @Test
-    public void findByFirstName() {
+    public void testFindByFirstName() {
         membersList = new ArrayList<>();
         Assert.assertEquals(membersList , memberController.findByFirstName("juam"));
     }
 
     @Test
-    public void findByFirstNameEmpty(){
+    public void testFindByFirstNameEmpty(){
         membersList = new ArrayList<>();
         Assert.assertEquals(membersList , memberController.findByFirstName(""));
     }
