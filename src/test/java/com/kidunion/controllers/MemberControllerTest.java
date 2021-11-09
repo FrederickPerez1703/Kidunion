@@ -4,7 +4,6 @@ import com.kidunion.members.Infrastructure.MemberController;
 import com.kidunion.Mock.MembersMockFactory;
 import com.kidunion.members.domain.Members;
 import com.kidunion.members.domain.MemberRepository;
-import com.kidunion.members.application.MemberService;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,8 +23,8 @@ public class MemberControllerTest {
 
     @InjectMocks
     MemberController memberController;
-    @Mock
-    MemberService memberService;
+   /* @Mock
+    MemberService memberService;*/
     @Mock
     MemberRepository memberRepository;
     @Mock
@@ -35,7 +34,7 @@ public class MemberControllerTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        memberService = new MemberService(memberRepository);
+       /* memberService = new MemberService(memberRepository);*/
         //memberController = new MemberController(memberService);
         MembersMockFactory.newListMembers(memberController);
         MembersMockFactory.newMembers(memberController , "juan");
