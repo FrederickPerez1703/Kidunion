@@ -12,6 +12,8 @@ import java.util.Objects;
 @Service
 public class SaveMember implements SaveEntity<Members> {
     private final MemberRepository membersMemberRepository;
+    private static final String STORAGE_TIME = "3 años";
+    private static final String MESSAGE_ERROR = "Error in the object";
 
     @Autowired
     public SaveMember(MemberRepository membersMemberRepository) {
@@ -21,9 +23,10 @@ public class SaveMember implements SaveEntity<Members> {
     @Override
     public void save(Members entity) {
         if (Objects.nonNull(entity)) {
+            entity.setStorageTime(STORAGE_TIME);
             membersMemberRepository.save(entity);
         }else{
-            throw new MemberException("Error in the object");
+            throw new MemberException(MESSAGE_ERROR);
         }
     }
 }
