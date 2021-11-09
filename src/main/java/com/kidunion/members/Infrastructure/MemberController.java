@@ -26,8 +26,7 @@ public class MemberController {
     private static final Logger LOGGER = LoggerFactory.getLogger(MemberController.class);
 
     @Autowired
-    public MemberController(CrudGeneric<Members> crudGeneric,
-                            FindByValue<Members> findByValue,
+    public MemberController(FindByValue<Members> findByValue,
                             SaveEntity<Members> saveEntity,
                             DeleteEntity<Members> deleteMember,
                             FindAllEntity<Members> findAllEntity,
