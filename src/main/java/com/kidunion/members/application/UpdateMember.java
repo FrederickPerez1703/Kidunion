@@ -4,9 +4,11 @@ import com.kidunion.members.domain.MemberRepository;
 import com.kidunion.members.domain.Members;
 import com.kidunion.utilities.UpdateEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 
+@Service
 public class UpdateMember implements UpdateEntity<Members> {
     private final MemberRepository memberRepository;
 
