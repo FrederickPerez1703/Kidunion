@@ -1,9 +1,10 @@
-package com.kidunion.services;
+package com.kidunion.members.application;
 
-import com.kidunion.model.Members;
-import com.kidunion.repositories.CrudGeneric;
-import com.kidunion.repositories.FindByValue;
-import com.kidunion.repositories.MemberRepository;
+import com.kidunion.members.domain.exception.MemberException;
+import com.kidunion.members.domain.Members;
+import com.kidunion.members.domain.MemberRepository;
+import com.kidunion.utilities.CrudGeneric;
+import com.kidunion.utilities.FindByValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +12,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-
 public class MemberService implements CrudGeneric<Members>, FindByValue<Members> {
 
-    private MemberRepository membersMemberRepository;
+    private final MemberRepository membersMemberRepository;
+    private static final String STORAGE_TIME = "3 años";
+    private static final String MESSAGE_ERROR = "Ha ocurrido un Error";
 
     @Autowired
     public MemberService(MemberRepository membersMemberRepository) {
@@ -33,8 +35,14 @@ public class MemberService implements CrudGeneric<Members>, FindByValue<Members>
     }
 
     @Override
-    public void save(Members entity) {
-        membersMemberRepository.save(entity);
+    public void save(Members entity) throws MemberException{
+        if(entity != null){
+            entity.setStorageTime(STORAGE_TIME);
+            membersMemberRepository.save(entity);
+        }else{
+            throw new MemberException(MESSAGE_ERROR);
+        }
+
     }
 
     @Override

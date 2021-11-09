@@ -1,4 +1,4 @@
-package com.kidunion.model;
+package com.kidunion.members.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -36,7 +36,9 @@ public class Members {
     @Column(nullable = false, length = 255)
     private String typeOfRegistration;
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public void setFirstName(String fistName) {
         this.firstName = fistName;
@@ -82,7 +84,9 @@ public class Members {
         this.typeOfRegistration = typeOfRegistration;
     }
 
-    public Long getId() { return id; }
+    public Long getId() {
+        return id;
+    }
 
     public String getFirstName() {
         return firstName;
@@ -128,5 +132,21 @@ public class Members {
         return typeOfRegistration;
     }
 
-
+    @Override
+    public String toString() {
+        return "Members{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dateOfBirth=" + dateOfBirth +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", adress='" + adress + '\'' +
+                ", photo='" + photo + '\'' +
+                ", addedThe=" + addedThe +
+                ", storageTime='" + storageTime + '\'' +
+                ", documentsProvided='" + documentsProvided + '\'' +
+                ", typeOfRegistration='" + typeOfRegistration + '\'' +
+                '}';
+    }
 }

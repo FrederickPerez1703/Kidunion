@@ -1,4 +1,4 @@
-package com.kidunion.repositories;
+package com.kidunion.utilities;
 
 import java.util.List;
 
