@@ -10,22 +10,23 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("kidunion")
 public class ChildrenController {
     private final FindByValue<Children> findByValue;
     private final SaveEntity<Children> saveEntity;
-    private final DeleteEntity<Children> deleteMember;
+    private final DeleteEntity<Children> deleteEntity;
     private final UpdateEntity<Children> updateEntity;
     private final FindAllEntity<Children> findAllEntity;
 
     public ChildrenController(FindByValue<Children> findByValue, SaveEntity<Children> saveEntity,
-                              DeleteEntity<Children> deleteMember, UpdateEntity<Children> updateEntity,
+                              DeleteEntity<Children> deleteEntity, UpdateEntity<Children> updateEntity,
                               FindAllEntity<Children> findAllEntity) {
         this.findByValue = findByValue;
         this.saveEntity = saveEntity;
-        this.deleteMember = deleteMember;
+        this.deleteEntity = deleteEntity;
         this.updateEntity = updateEntity;
         this.findAllEntity = findAllEntity;
     }
@@ -61,5 +62,20 @@ public class ChildrenController {
             return new ArrayList<>();
         }
         return findByValue.findByValue(firstName);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") Long id ){
+        deleteEntity.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body("Delete children");
+    }
+
+    @PutMapping
+    public ResponseEntity<Children> update(@RequestBody Children children){
+        if (Objects.nonNull(children)){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(children);
+        }else{
+            return ResponseEntity.status(HttpStatus.OK).body(updateEntity.update(children));
+        }
     }
 }
