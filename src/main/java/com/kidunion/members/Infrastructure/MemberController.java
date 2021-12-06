@@ -86,7 +86,7 @@ public class MemberController {
     public ResponseEntity<String> deleteById(@PathVariable("Id") long id) {
         ResponseEntity<String> responseEntity =
                 ResponseEntity.status(HttpStatus.CREATED).body("delete exist");
-        Optional<Members> optionalMembers = findAll().stream().filter(members -> members.equals(id)).findAny();
+        Optional<Members> optionalMembers = findAll().stream().filter(members -> members.getId().equals(id)).findAny();
        if (optionalMembers.isPresent()){
            deleteMember.delete(id);
            return responseEntity;
