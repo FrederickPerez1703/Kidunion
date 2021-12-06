@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -22,7 +23,7 @@ public class MemberController {
     private final SaveEntity<Members> saveEntity;
     private final DeleteEntity<Members> deleteMember;
     private final UpdateEntity<Members> updateEntity;
-    private final FindAllEntity<Members>  findAllEntity;
+    private final FindAllEntity<Members> findAllEntity;
     private static final Logger LOGGER = LoggerFactory.getLogger(MemberController.class);
 
     @Autowired
@@ -76,14 +77,15 @@ public class MemberController {
     }
 
     @PutMapping("/Member")
-    public ResponseEntity<Members> update(@RequestBody Members members){
+    public ResponseEntity<Members> update(@RequestBody Members members) {
         updateEntity.update(members);
         return ResponseEntity.status(HttpStatus.ACCEPTED).body(members);
     }
 
     @DeleteMapping("/Member/{Id}")
-    public ResponseEntity<String> deleteById(@PathVariable("Id") long id){
-        deleteMember.delete(id);
+    public ResponseEntity<String> deleteById(@PathVariable("Id") long id) {
+        Optional<Members> optionalMembers = findAll().stream().filter(members -> members.equals(id)).findFirst();
+        optionalMembers.ifPresent(members -> deleteMember.delete(members.getId()));
         return ResponseEntity.status(HttpStatus.OK).body("delete exist");
     }
 }
