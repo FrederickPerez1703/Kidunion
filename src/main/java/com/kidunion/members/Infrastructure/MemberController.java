@@ -84,8 +84,13 @@ public class MemberController {
 
     @DeleteMapping("/Member/{Id}")
     public ResponseEntity<String> deleteById(@PathVariable("Id") long id) {
-        Optional<Members> optionalMembers = findAll().stream().filter(members -> members.equals(id)).findFirst();
-        optionalMembers.ifPresent(members -> deleteMember.delete(members.getId()));
-        return ResponseEntity.status(HttpStatus.OK).body("delete exist");
+        ResponseEntity<String> responseEntity =
+                ResponseEntity.status(HttpStatus.CREATED).body("delete exist");
+        Optional<Members> optionalMembers = findAll().stream().filter(members -> members.equals(id)).findAny();
+       if (optionalMembers.isPresent()){
+           deleteMember.delete(id);
+           return responseEntity;
+       }
+        return ResponseEntity.status(HttpStatus.OK).body("the id not exist");
     }
 }
