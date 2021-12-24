@@ -16,7 +16,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/kidunion")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET ,RequestMethod.DELETE ,RequestMethod.PUT })
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET ,RequestMethod.DELETE ,RequestMethod.PUT, RequestMethod.POST })
 public class MemberController {
 
     private final FindByValue<Members> findByValue;
