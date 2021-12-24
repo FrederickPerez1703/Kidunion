@@ -12,6 +12,9 @@ import java.util.Objects;
 @Service
 public class SaveMember implements SaveEntity<Members> {
     private final MemberRepository membersMemberRepository;
+    private static final String ARCHIVO = "Archivo";
+    private static final String REGISTRATION = "Digital";
+    private static final String PHOTO = "ENABLE";
     private static final String STORAGE_TIME = "3 años";
     private static final String MESSAGE_ERROR = "Error in the object";
 
@@ -23,7 +26,9 @@ public class SaveMember implements SaveEntity<Members> {
     @Override
     public void save(Members entity) {
         if (Objects.nonNull(entity)) {
-            entity.setStorageTime(STORAGE_TIME);
+            entity.setPhoto(PHOTO);
+            entity.setTypeOfRegistration(REGISTRATION);
+            entity.setDocumentsProvided(ARCHIVO);
             membersMemberRepository.save(entity);
         }else{
             throw new MemberException(MESSAGE_ERROR);
