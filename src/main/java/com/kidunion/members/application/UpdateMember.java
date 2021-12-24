@@ -11,6 +11,9 @@ import java.util.Objects;
 @Service
 public class UpdateMember implements UpdateEntity<Members> {
     private final MemberRepository memberRepository;
+    private static final String ARCHIVO = "Archivo";
+    private static final String REGISTRATION = "Digital";
+    private static final String PHOTO = "ENABLE";
 
     @Autowired
     public UpdateMember(MemberRepository memberRepository) {
@@ -27,11 +30,11 @@ public class UpdateMember implements UpdateEntity<Members> {
             members.setEmail(entity.getEmail());
             members.setPhoneNumber(entity.getPhoneNumber());
             members.setAdress(entity.getAdress());
-            members.setPhoto(entity.getPhoto());
+            members.setPhoto(PHOTO);
             members.setAddedThe(entity.getAddedThe());
             members.setStorageTime(entity.getStorageTime());
-            members.setDocumentsProvided(entity.getDocumentsProvided());
-            members.setTypeOfRegistration(entity.getTypeOfRegistration());
+            members.setDocumentsProvided(ARCHIVO);
+            members.setTypeOfRegistration(REGISTRATION);
             memberRepository.save(members);
             return members;
         }else{
