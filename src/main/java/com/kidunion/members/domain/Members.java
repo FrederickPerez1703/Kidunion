@@ -16,7 +16,7 @@ public class Members {
     @Column(nullable = false, length = 255)
     private String lastName;
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy/MM/dd")
     private Date dateOfBirth;
     @Column(nullable = false, length = 255)
     private String email;
