@@ -1,7 +1,5 @@
 package com.kidunion.members.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -16,7 +14,6 @@ public class Members {
     @Column(nullable = false, length = 255)
     private String lastName;
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
     @Column(nullable = false, length = 255)
     private String email;
@@ -27,7 +24,6 @@ public class Members {
     @Column(nullable = false, length = 255)
     private String photo;
     @Column(nullable = false, length = 255)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private Date addedThe;
     @Column(nullable = false, length = 255)
     private String storageTime;

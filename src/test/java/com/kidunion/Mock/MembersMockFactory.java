@@ -2,7 +2,6 @@ package com.kidunion.Mock;
 
 import com.kidunion.members.Infrastructure.MemberController;
 import com.kidunion.members.domain.Members;
-import com.kidunion.members.application.MemberService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ public class MembersMockFactory {
         return membersList;
     }
 
-    public static List<Members> newListMembersServices(MemberService memberService) {
+/*    public static List<Members> newListMembersServices(MemberService memberService) {
         List<Members> membersList = new ArrayList<>();
         when(memberService.findAll()).thenReturn(membersList);
         return membersList;
@@ -33,5 +32,5 @@ public class MembersMockFactory {
         List<Members> membersList = new ArrayList<>();
         when(memberService.findByValue(firstName)).thenReturn(membersList);
         return membersList;
-    }
+    }*/
 }
