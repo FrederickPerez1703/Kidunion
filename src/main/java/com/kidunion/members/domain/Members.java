@@ -1,6 +1,7 @@
 package com.kidunion.members.domain;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,7 +15,7 @@ public class Members {
     @Column(nullable = false, length = 255)
     private String lastName;
     @Column(nullable = false)
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
     @Column(nullable = false, length = 255)
     private String email;
     @Column(nullable = false, length = 255)
@@ -44,7 +45,7 @@ public class Members {
         this.lastName = lastName;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -92,7 +93,7 @@ public class Members {
         return lastName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 

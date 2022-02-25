@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.kidunion.legalresponsible.domain.LegalResponsible;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Table(name = "children")
@@ -17,8 +18,7 @@ public class Children {
     @Column(nullable = false)
     private String lastName;
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
-    private Date dateofBirth;
+    private LocalDate dateofBirth;
     @Column(nullable = false)
     private String school;
     @Column(nullable = false)
@@ -44,7 +44,7 @@ public class Children {
         return lastName;
     }
 
-    public Date getDateofBirth() {
+    public LocalDate getDateofBirth() {
         return dateofBirth;
     }
 
@@ -84,7 +84,7 @@ public class Children {
         this.lastName = lastName;
     }
 
-    public void setDateofBirth(Date dateofBirth) {
+    public void setDateofBirth(LocalDate dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
 
