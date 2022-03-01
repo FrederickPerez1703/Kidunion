@@ -2,7 +2,6 @@ package com.kidunion.members.domain;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Table(name = "members")
@@ -25,7 +24,7 @@ public class Members {
     @Column(nullable = false, length = 255)
     private String photo;
     @Column(nullable = false, length = 255)
-    private Date addedThe;
+    private LocalDate addedThe;
     @Column(nullable = false, length = 255)
     private String storageTime;
     @Column(nullable = false, length = 255)
@@ -65,7 +64,7 @@ public class Members {
         this.photo = photo;
     }
 
-    public void setAddedThe(Date addedThe) {
+    public void setAddedThe(LocalDate addedThe) {
         this.addedThe = addedThe;
     }
 
@@ -113,7 +112,7 @@ public class Members {
         return photo;
     }
 
-    public Date getAddedThe() {
+    public LocalDate getAddedThe() {
         return addedThe;
     }
 
